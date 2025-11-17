@@ -961,104 +961,12 @@
    </header><!-- Ana Sayfa -->
    <section class="poems-section page-content" id="homePage">
     <h2 class="section-title">Son Şiirler</h2>
-    <div class="poems-grid">
-     <div class="poem-card">
-      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 40 Q15 20, 25 15 Q35 20, 40 40" stroke="#8b7355" stroke-width="2" opacity="0.6" /> <circle cx="25" cy="15" r="3" fill="#8b7355" opacity="0.5" />
-      </svg>
-      <h3 class="poem-title">Sessiz Gece</h3>
-      <p class="poem-excerpt">Karanlıkta yankılanan kelimeler,<br>
-        Unutulmuş defterlerin sayfalarında,<br>
-        Bir zamanlar yazdığım satırlar...</p>
-      <div class="poem-date">
-       15 Ocak 2024
-      </div>
-     </div>
-     <div class="poem-card">
-      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="20" height="30" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <line x1="20" y1="18" x2="30" y2="18" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="20" y1="24" x2="30" y2="24" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="20" y1="30" x2="28" y2="30" stroke="#8b7355" stroke-width="1" opacity="0.5" />
-      </svg>
-      <h3 class="poem-title">Mürekkep İzleri</h3>
-      <p class="poem-excerpt">Kâğıda dökülen düşünceler,<br>
-        Solmuş mürekkep lekeleri gibi,<br>
-        Zamanın tozunu taşıyor...</p>
-      <div class="poem-date">
-       12 Ocak 2024
-      </div>
-     </div>
-     <div class="poem-card">
-      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="15" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <path d="M25 15 L25 25 L32 28" stroke="#8b7355" stroke-width="2" opacity="0.5" />
-      </svg>
-      <h3 class="poem-title">Zaman Durduğunda</h3>
-      <p class="poem-excerpt">Saatin tik takları sustuğunda,<br>
-        Yalnızca kalp atışları kalır,<br>
-        Ve senin adın dudaklarımda...</p>
-      <div class="poem-date">
-       8 Ocak 2024
-      </div>
-     </div>
-     <div class="poem-card">
-      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 10 L25 40 M15 25 L35 25" stroke="#8b7355" stroke-width="2" opacity="0.6" /> <circle cx="25" cy="25" r="12" stroke="#8b7355" stroke-width="1" fill="none" opacity="0.4" />
-      </svg>
-      <h3 class="poem-title">Kayıp Yollar</h3>
-      <p class="poem-excerpt">Gittiğim her yol sana çıkıyor,<br>
-        Döndüğüm her köşe senin kokun,<br>
-        Kayboldum bu şehirde...</p>
-      <div class="poem-date">
-       5 Ocak 2024
-      </div>
-     </div>
+    <div class="poems-grid" id="homePoems"><!-- Şiirler dinamik olarak yüklenecek -->
     </div>
    </section><!-- Şiirler Sayfası - Liste Görünümü -->
    <section class="page-content" id="poemsPage" style="display: none;">
     <h2 class="section-title">Tüm Şiirler</h2>
-    <div class="poems-list">
-     <div class="poem-list-item" onclick="showPoemDetail('poem1')">
-      <div class="poem-list-icon">
-       📜
-      </div>
-      <div class="poem-list-content">
-       <h3 class="poem-list-title">Sessiz Gece</h3>
-       <p class="poem-list-date">15 Ocak 2024</p>
-      </div>
-      <div class="poem-list-arrow">
-       →
-      </div>
-     </div>
-     <div class="poem-list-item" onclick="showPoemDetail('poem2')">
-      <div class="poem-list-icon">
-       🖋️
-      </div>
-      <div class="poem-list-content">
-       <h3 class="poem-list-title">Mürekkep İzleri</h3>
-       <p class="poem-list-date">12 Ocak 2024</p>
-      </div>
-      <div class="poem-list-arrow">
-       →
-      </div>
-     </div>
-     <div class="poem-list-item" onclick="showPoemDetail('poem3')">
-      <div class="poem-list-icon">
-       ⏰
-      </div>
-      <div class="poem-list-content">
-       <h3 class="poem-list-title">Zaman Durduğunda</h3>
-       <p class="poem-list-date">8 Ocak 2024</p>
-      </div>
-      <div class="poem-list-arrow">
-       →
-      </div>
-     </div>
-     <div class="poem-list-item" onclick="showPoemDetail('poem4')">
-      <div class="poem-list-icon">
-       🗺️
-      </div>
-      <div class="poem-list-content">
-       <h3 class="poem-list-title">Kayıp Yollar</h3>
-       <p class="poem-list-date">5 Ocak 2024</p>
-      </div>
-      <div class="poem-list-arrow">
-       →
-      </div>
-     </div>
+    <div class="poems-list" id="poemsList"><!-- Şiirler dinamik olarak yüklenecek -->
     </div>
    </section><!-- Şiir Detay Sayfası -->
    <section class="page-content" id="poemDetailPage" style="display: none;">
@@ -1324,7 +1232,7 @@
       }, 3000);
     });
 
-    // Şiir veritabanı
+   // Şiir veritabanı
     const poems = {
       poem1: {
         title: "Çocuk",
@@ -1428,6 +1336,75 @@ Randevuda güneşini `
       }
     };
 
+    // Ana sayfadaki şiirleri yükle
+    function loadHomePoems() {
+      const homePoems = document.getElementById('homePoems');
+      homePoems.innerHTML = '';
+
+      const poemIcons = [
+        `<svg class="poem-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 40 Q15 20, 25 15 Q35 20, 40 40" stroke="#8b7355" stroke-width="2" opacity="0.6"/>
+          <circle cx="25" cy="15" r="3" fill="#8b7355" opacity="0.5"/>
+        </svg>`,
+        `<svg class="poem-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="10" width="20" height="30" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6"/>
+          <line x1="20" y1="18" x2="30" y2="18" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+          <line x1="20" y1="24" x2="30" y2="24" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+          <line x1="20" y1="30" x2="28" y2="30" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+        </svg>`,
+        `<svg class="poem-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="15" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6"/>
+          <path d="M25 15 L25 25 L32 28" stroke="#8b7355" stroke-width="2" opacity="0.5"/>
+        </svg>`,
+        `<svg class="poem-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 10 L25 40 M15 25 L35 25" stroke="#8b7355" stroke-width="2" opacity="0.6"/>
+          <circle cx="25" cy="25" r="12" stroke="#8b7355" stroke-width="1" fill="none" opacity="0.4"/>
+        </svg>`
+      ];
+
+      let iconIndex = 0;
+      for (const [poemId, poem] of Object.entries(poems)) {
+        const poemCard = document.createElement('div');
+        poemCard.className = 'poem-card';
+        poemCard.onclick = () => showPoemDetail(poemId);
+        
+        const icon = poemIcons[iconIndex % poemIcons.length];
+        iconIndex++;
+
+        poemCard.innerHTML = `
+          ${icon}
+          <h3 class="poem-title">${poem.title}</h3>
+          <p class="poem-excerpt">${poem.excerpt.replace(/\n/g, '<br>')}</p>
+          <div class="poem-date">${poem.date}</div>
+        `;
+        
+        homePoems.appendChild(poemCard);
+      }
+    }
+
+    // Şiir listesini yükle
+    function loadPoemsList() {
+      const poemsList = document.getElementById('poemsList');
+      poemsList.innerHTML = '';
+
+      for (const [poemId, poem] of Object.entries(poems)) {
+        const poemItem = document.createElement('div');
+        poemItem.className = 'poem-list-item';
+        poemItem.onclick = () => showPoemDetail(poemId);
+        
+        poemItem.innerHTML = `
+          <div class="poem-list-icon">${poem.icon}</div>
+          <div class="poem-list-content">
+            <h3 class="poem-list-title">${poem.title}</h3>
+            <p class="poem-list-date">${poem.date}</p>
+          </div>
+          <div class="poem-list-arrow">→</div>
+        `;
+        
+        poemsList.appendChild(poemItem);
+      }
+    }
+
     // Şiir detayını göster
     function showPoemDetail(poemId) {
       const poem = poems[poemId];
@@ -1445,7 +1422,9 @@ Randevuda güneşini `
       showPage('poemDetailPage');
     }
 
-    // Sayfa yüklendiğinde Ana Sayfa'yı aktif yap
+    // Sayfa yüklendiğinde şiirleri yükle ve Ana Sayfa'yı aktif yap
+    loadHomePoems();
+    loadPoemsList();
     document.getElementById('navHome').classList.add('active');
 
     if (window.elementSdk) {
@@ -1457,5 +1436,5 @@ Randevuda güneşini `
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a00fce795e2de7a',t:'MTc2MzQwMDk2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a011ed5e63723a1',t:'MTc2MzQwMjM1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
