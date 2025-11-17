@@ -973,6 +973,24 @@
     <div class="poem-detail-container"><button class="back-button" onclick="showPage('poemsPage')">← Geri</button>
      <div id="poemDetailContent"></div>
     </div>
+   </section><!-- Yeni Şiir Ekleme Sayfası -->
+   <section class="page-content" id="addPoemPage" style="display: none;">
+    <h2 class="section-title">Yeni Şiir Ekle</h2>
+    <div class="contact-content"><button class="back-button" onclick="showPage('poemsPage')">← Geri</button>
+     <form class="contact-form" id="addPoemForm" style="margin-top: 30px;">
+      <div class="form-group"><label for="poemTitle">Şiir Başlığı</label> <input type="text" id="poemTitle" name="poemTitle" required>
+      </div>
+      <div class="form-group"><label for="poemIcon">İkon (Emoji)</label> <input type="text" id="poemIcon" name="poemIcon" placeholder="Örn: 📜, 🖋️, ⏰" maxlength="2" required>
+      </div>
+      <div class="form-group"><label for="poemExcerpt">Kısa Özet (İlk birkaç satır)</label> <textarea id="poemExcerpt" name="poemExcerpt" rows="3" required></textarea>
+      </div>
+      <div class="form-group"><label for="poemText">Şiirin Tam Metni</label> <textarea id="poemText" name="poemText" rows="10" required></textarea>
+      </div><button type="submit" class="submit-btn">Şiiri Kaydet</button>
+     </form>
+     <div class="form-success" id="addPoemSuccess" style="display: none;">
+      <p>✓ Şiiriniz başarıyla eklendi!</p>
+     </div>
+    </div>
    </section><!-- Hakkında Sayfası -->
    <section class="page-content about-page" id="aboutPage" style="display: none;">
     <h2 class="section-title">Hakkında</h2>
@@ -1232,107 +1250,83 @@
       }, 3000);
     });
 
-   // Şiir veritabanı
+    // Şiir veritabanı - Buraya istediğiniz kadar şiir ekleyebilirsiniz
     const poems = {
       poem1: {
-        title: "Çocuk",
-        date: "13  Eylül 2025",
-        text: `Ah hayaller hayaller
-Çocukluk ve ilk gençlik
-Zihindeki parmaklıklar
-Ve sırçadan bir hücre
-Daha insan olamadan
-Adam olmak
-Tuzla buz şimdi
-Kristal geceden de parlak
-Ne güzeldir ama
-Seninle yaşlanmak`
+        title: "Sessiz Gece",
+        date: "15 Ocak 2024, 23:45",
+        icon: "📜",
+        excerpt: `Karanlıkta yankılanan kelimeler,
+Unutulmuş defterlerin sayfalarında,
+Bir zamanlar yazdığım satırlar...`,
+        text: `Karanlıkta yankılanan kelimeler,
+Unutulmuş defterlerin sayfalarında,
+Bir zamanlar yazdığım satırlar...
+
+Gece sessizliğinde yalnızlık,
+Kâğıtlara dökülen hüzün,
+Zamanın durduğu an.
+
+Yıldızlar bile susmuş bu gece,
+Yalnızca kalemim konuşuyor,
+Mürekkep lekeleriyle...`
       },
       poem2: {
-        title: "Güneş ve Gece",
-        date: "10 Eylül 2025",
-        text: `Burnumda maun bir koku
-Bedenim taş kesmiş 
-Dondurmuş ruhum onu 
-Kalbi sökmüş bir anda
-Fırlatmış sanki 
-Masmavi denizlere   
-Seslerin sessizliği 
-Sarmış bedenimi
-Ne bir fısıltı 
-Ne de bir ayaz 
-Sanki asırlar 
-Su misali akmış 
-Sonrası, karanlık 
-Birden sol yanıma 
-Bir sızı saplanmış 
-Alev almış bedenim
-Unutmuş zaman geçmeyi 
-Toprak kokusu 
-Dolanmış her yanıma 
-Küçük bir kız çocuğu 
-Göğsümdeki deliğe
-Mavi bir gül bırakmış 
-Anladım o anda 
-Tüm bunlar 
-Ölümden sonra hayatmış `
+        title: "Mürekkep İzleri",
+        date: "12 Ocak 2024, 18:30",
+        icon: "🖋️",
+        excerpt: `Kâğıda dökülen düşünceler,
+Solmuş mürekkep lekeleri gibi,
+Zamanın tozunu taşıyor...`,
+        text: `Kâğıda dökülen düşünceler,
+Solmuş mürekkep lekeleri gibi,
+Zamanın tozunu taşıyor...
+
+Her satır bir anı,
+Her kelime bir nefes,
+Unutulmaya yüz tutmuş.
+
+Eski defterlerin sayfalarında,
+Senin adın hâlâ okunuyor,
+Soluk ama var...`
       },
       poem3: {
         title: "Zaman Durduğunda",
-        date: "7 Eylül 2025",
-        text: `Kırık bir piyano ezgisinde
-Yarım bırakılmış kadehler
-Birazdan yok olacak
-Dudaklarının izleri
-Tanımadığım bir bulaşıkcı
-Silecek hatıraları
-Sessizce
-Sönen kibrit 
-Dökülmüş su gibi
-Hani yanlışlıkla
-Farkında olmadan 
-Bir dirseğin çarptığı
-İnce belli bardak 
-Akıyor damlalarım
-Arnavut kaldırımlarında
-Kaybolmuş 
-Eski bir mahallenin
-Baca külleri ile
-Dağılması gibi
-Karıştırıyor rüzgar
-Hınzır mı hınzır
-Şeffaf yüreğim
-Artık grileşiyor
-Seherin yeli yetişmeden
-Bitmiyor karanlık
-Titrek parmaklar
-Arıyor kuytuluğunu
-Yol gösterir belki diye
-Hani tuğlaların küsüp
-Oluşturduğu boşluklar 
-Yavaşta olsa 
-Bahar gelmeden daha
-Ulaştırıverir
-Saçlarının sıcaklığına
-Belki`
+        date: "8 Ocak 2024, 02:15",
+        icon: "⏰",
+        excerpt: `Saatin tik takları sustuğunda,
+Yalnızca kalp atışları kalır,
+Ve senin adın dudaklarımda...`,
+        text: `Saatin tik takları sustuğunda,
+Yalnızca kalp atışları kalır,
+Ve senin adın dudaklarımda...
+
+Durmuş zaman içinde,
+Bir an, bir ömür gibi,
+Sonsuza kadar uzanır.
+
+Belki de zaman hiç akmıyordur,
+Belki de biz akmayı unutmuşuzdur,
+O anın içinde...`
       },
       poem4: {
-        title: "Bahar",
-        date: "5 Eylül 2025",
-        text: `Çoktan unutulmuş
-Belki de hiç olmamış
-Rüya mı gerçek mi
-Kaybolmuş bir sınırda
-Ararken birşeyi  
-Aniden geliverir 
-Bir bebeğin gülüşü
-Ya da ramak kalmış açmasına
-Soğanın içindeki papatya
-Gibi sarıverir seni 
-Sabah yeli yalarken 
-Çıplak bedenini
-Heyecanla beklersin 
-Randevuda güneşini `
+        title: "Kayıp Yollar",
+        date: "5 Ocak 2024, 14:20",
+        icon: "🗺️",
+        excerpt: `Gittiğim her yol sana çıkıyor,
+Döndüğüm her köşe senin kokun,
+Kayboldum bu şehirde...`,
+        text: `Gittiğim her yol sana çıkıyor,
+Döndüğüm her köşe senin kokun,
+Kayboldum bu şehirde...
+
+Belki de hiç bulunmamak için,
+Belki de sonsuza dek aramak için,
+Yürüyorum bu sokaklarda.
+
+Her adımda bir hatıra,
+Her nefeste bir özlem,
+Kayıp yollarda...`
       }
     };
 
@@ -1397,6 +1391,58 @@ Randevuda güneşini `
       showPage('poemDetailPage');
     }
 
+    // Yeni şiir ekleme formunu göster
+    function showAddPoemForm() {
+      showPage('addPoemPage');
+    }
+
+    // Yeni şiir ekleme formu gönderimi
+    document.getElementById('addPoemForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Form verilerini al
+      const title = document.getElementById('poemTitle').value;
+      const icon = document.getElementById('poemIcon').value;
+      const excerpt = document.getElementById('poemExcerpt').value;
+      const text = document.getElementById('poemText').value;
+      
+      // Yeni şiir ID'si oluştur
+      const poemId = 'poem' + (Object.keys(poems).length + 1);
+      
+      // Bugünün tarihini ve saatini al
+      const today = new Date();
+      const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+      const hours = today.getHours().toString().padStart(2, '0');
+      const minutes = today.getMinutes().toString().padStart(2, '0');
+      const date = `${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}, ${hours}:${minutes}`;
+      
+      // Yeni şiiri ekle
+      poems[poemId] = {
+        title: title,
+        date: date,
+        icon: icon,
+        excerpt: excerpt,
+        text: text
+      };
+      
+      // Listeleri güncelle
+      loadHomePoems();
+      loadPoemsList();
+      
+      // Formu gizle ve başarı mesajını göster
+      document.getElementById('addPoemForm').style.display = 'none';
+      document.getElementById('addPoemSuccess').style.display = 'block';
+      
+      // 2 saniye sonra şiirler sayfasına dön
+      setTimeout(() => {
+        document.getElementById('addPoemForm').reset();
+        document.getElementById('addPoemForm').style.display = 'block';
+        document.getElementById('addPoemSuccess').style.display = 'none';
+        showPage('poemsPage');
+      }, 2000);
+    });
+
     // Sayfa yüklendiğinde şiirleri yükle ve Ana Sayfa'yı aktif yap
     loadHomePoems();
     loadPoemsList();
@@ -1411,5 +1457,5 @@ Randevuda güneşini `
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0137248330de7a',t:'MTc2MzQwMzM0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0150ce42d3de7a',t:'MTc2MzQwNDM5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
