@@ -1,0 +1,1461 @@
+<!doctype html>
+<html lang="tr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kendime Kelimeler</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Kalam:wght@300;400;700&amp;family=Dancing+Script:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kalam', cursive;
+      background: linear-gradient(135deg, #f4e1c1 0%, #e8d4b0 100%);
+      color: #3b2f2f;
+      min-height: 100%;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    /* Eski kağıt dokusu overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(0deg, rgba(59, 47, 47, 0.03) 0px, transparent 1px, transparent 2px, rgba(59, 47, 47, 0.03) 3px),
+        repeating-linear-gradient(90deg, rgba(59, 47, 47, 0.03) 0px, transparent 1px, transparent 2px, rgba(59, 47, 47, 0.03) 3px),
+        radial-gradient(circle at 20% 30%, rgba(139, 115, 85, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(139, 115, 85, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Mürekkep lekesi efekti */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -30%;
+      right: -15%;
+      width: 70%;
+      height: 120%;
+      background: radial-gradient(ellipse at center, rgba(59, 47, 47, 0.12) 0%, rgba(80, 60, 50, 0.06) 40%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: inkGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes inkGlow {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.2) translateY(-15px);
+        opacity: 0.8;
+      }
+    }
+
+    /* Vintage desenler */
+    .decorative-patterns {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .corner-pattern {
+      position: absolute;
+      opacity: 0.35;
+      filter: drop-shadow(0 2px 8px rgba(59, 47, 47, 0.3));
+    }
+
+    .corner-pattern.top-left {
+      top: 20px;
+      left: 20px;
+      transform: rotate(0deg);
+    }
+
+    .corner-pattern.top-right {
+      top: 20px;
+      right: 20px;
+      transform: rotate(90deg);
+    }
+
+    .corner-pattern.bottom-left {
+      bottom: 20px;
+      left: 20px;
+      transform: rotate(-90deg);
+    }
+
+    .corner-pattern.bottom-right {
+      bottom: 20px;
+      right: 20px;
+      transform: rotate(180deg);
+    }
+
+    .floating-ornament {
+      position: absolute;
+      opacity: 0.25;
+      animation: floatOrnament 15s ease-in-out infinite;
+      filter: drop-shadow(0 2px 4px rgba(59, 47, 47, 0.2));
+    }
+
+    .floating-ornament:nth-child(5) {
+      top: 25%;
+      left: 8%;
+      animation-delay: 0s;
+    }
+
+    .floating-ornament:nth-child(6) {
+      top: 60%;
+      right: 12%;
+      animation-delay: 5s;
+      transform: rotate(45deg);
+    }
+
+    .floating-ornament:nth-child(7) {
+      bottom: 30%;
+      left: 15%;
+      animation-delay: 10s;
+      transform: rotate(-30deg);
+    }
+
+    .floating-ornament:nth-child(8) {
+      top: 40%;
+      left: 50%;
+      animation-delay: 3s;
+      transform: rotate(60deg);
+    }
+
+    .floating-ornament:nth-child(9) {
+      top: 70%;
+      right: 25%;
+      animation-delay: 8s;
+      transform: rotate(-45deg);
+    }
+
+    .floating-ornament:nth-child(10) {
+      top: 15%;
+      left: 30%;
+      animation-delay: 12s;
+      transform: rotate(120deg);
+    }
+
+    .floating-ornament:nth-child(11) {
+      bottom: 15%;
+      right: 40%;
+      animation-delay: 6s;
+      transform: rotate(-60deg);
+    }
+
+    .side-pattern {
+      position: absolute;
+      opacity: 0.3;
+      animation: sideFloat 20s ease-in-out infinite;
+      filter: drop-shadow(0 1px 3px rgba(59, 47, 47, 0.2));
+    }
+
+    .side-pattern.left {
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation-delay: 2s;
+    }
+
+    .side-pattern.right {
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+      animation-delay: 7s;
+    }
+
+    .border-ornament {
+      position: absolute;
+      opacity: 0.28;
+      animation: borderPulse 18s ease-in-out infinite;
+      filter: drop-shadow(0 1px 2px rgba(59, 47, 47, 0.15));
+    }
+
+    .border-ornament.top {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 1s;
+    }
+
+    .border-ornament.bottom {
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(180deg);
+      animation-delay: 9s;
+    }
+
+    @keyframes floatOrnament {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.08;
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg) scale(1.1);
+        opacity: 0.12;
+      }
+    }
+
+    @keyframes sideFloat {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+        opacity: 0.1;
+      }
+      50% {
+        transform: translateY(-50%) translateX(10px) scale(1.05);
+        opacity: 0.15;
+      }
+    }
+
+    @keyframes borderPulse {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.12;
+      }
+      50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.18;
+      }
+    }
+
+    /* Vintage mürekkep lekeleri */
+    .bokeh-lights {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bokeh-light {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(80, 60, 50, 0.15) 0%, rgba(59, 47, 47, 0.08) 40%, transparent 70%);
+      filter: blur(25px);
+      animation: inkStainFloat 20s ease-in-out infinite;
+    }
+
+    .bokeh-light:nth-child(1) {
+      width: 120px;
+      height: 100px;
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+      border-radius: 60% 40% 50% 50%;
+    }
+
+    .bokeh-light:nth-child(2) {
+      width: 150px;
+      height: 130px;
+      top: 55%;
+      right: 15%;
+      animation-delay: 5s;
+      border-radius: 50% 60% 40% 50%;
+    }
+
+    .bokeh-light:nth-child(3) {
+      width: 90px;
+      height: 80px;
+      top: 75%;
+      left: 35%;
+      animation-delay: 10s;
+      border-radius: 40% 50% 60% 50%;
+    }
+
+    .bokeh-light:nth-child(4) {
+      width: 110px;
+      height: 95px;
+      top: 25%;
+      right: 8%;
+      animation-delay: 15s;
+      border-radius: 55% 45% 50% 50%;
+    }
+
+    @keyframes inkStainFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translateY(-15px) scale(1.1) rotate(5deg);
+        opacity: 0.7;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+
+
+    /* Header bölümü */
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    /* Header İkonu */
+    .inkwell-icon {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+      filter: drop-shadow(0 6px 20px rgba(139, 115, 85, 0.4));
+    }
+
+    .site-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 72px;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(59, 47, 47, 0.2), 0 0 15px rgba(139, 115, 85, 0.15);
+      position: relative;
+    }
+
+    .site-motto {
+      font-size: 20px;
+      font-style: italic;
+      opacity: 0.8;
+      margin: 0 0 50px 0;
+      letter-spacing: 1px;
+    }
+
+    /* Navigasyon */
+    .navigation {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .nav-link {
+      font-size: 18px;
+      color: #3b2f2f;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #8b7355;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      text-shadow: 0 0 10px rgba(139, 115, 85, 0.4);
+    }
+
+    /* Şiir kartları bölümü */
+    .poems-section {
+      margin-top: 80px;
+    }
+
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 42px;
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #8b7355, transparent);
+    }
+
+    .poems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .poem-card {
+      background: linear-gradient(135deg, rgba(244, 225, 193, 0.6) 0%, rgba(232, 212, 176, 0.5) 100%);
+      border: 1px solid rgba(59, 47, 47, 0.2);
+      border-radius: 8px;
+      padding: 40px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(59, 47, 47, 0.15);
+    }
+
+    /* Mürekkep lekesi efekti her kartta */
+    .poem-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(80, 60, 50, 0.12) 0%, rgba(59, 47, 47, 0.06) 40%, transparent 70%);
+      border-radius: 60% 40% 55% 45%;
+      filter: blur(35px);
+      transition: all 0.4s ease;
+      animation: inkPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes inkPulse {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.15) rotate(5deg);
+      }
+    }
+
+    .poem-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(59, 47, 47, 0.25);
+      border-color: rgba(59, 47, 47, 0.35);
+    }
+
+    .poem-card:hover::before {
+      width: 180px;
+      height: 180px;
+      opacity: 1;
+      background: radial-gradient(circle, rgba(80, 60, 50, 0.18) 0%, rgba(59, 47, 47, 0.1) 40%, transparent 70%);
+    }
+
+    .poem-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .poem-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      margin: 0 0 15px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poem-excerpt {
+      font-size: 16px;
+      line-height: 1.8;
+      opacity: 0.85;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .poem-date {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-top: 20px;
+      text-align: right;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Vintage gölge efekti */
+    .smoke-effect {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(to top, rgba(244, 225, 193, 0.8) 0%, rgba(244, 225, 193, 0.4) 30%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+      animation: vintageRise 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes vintageRise {
+      0% {
+        opacity: 0.6;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0.8;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Sayfa geçiş animasyonu */
+    .page-content {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatDove {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-15px) rotate(5deg);
+      }
+    }
+
+    /* Hakkında sayfası stilleri */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 40px;
+      opacity: 0.6;
+    }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 2;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .about-quote {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      font-style: italic;
+      margin-top: 60px;
+      padding: 30px;
+      border-left: 3px solid rgba(139, 115, 85, 0.4);
+      border-right: 3px solid rgba(139, 115, 85, 0.4);
+      opacity: 0.8;
+    }
+
+    /* İletişim sayfası stilleri */
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 40px;
+      display: block;
+      opacity: 0.6;
+    }
+
+    .contact-text {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 50px;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      background: linear-gradient(135deg, rgba(244, 225, 193, 0.5) 0%, rgba(232, 212, 176, 0.4) 100%);
+      padding: 40px;
+      border-radius: 8px;
+      border: 1px solid rgba(59, 47, 47, 0.2);
+      box-shadow: 0 4px 25px rgba(59, 47, 47, 0.15);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      opacity: 0.9;
+      color: #3b2f2f;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(59, 47, 47, 0.25);
+      border-radius: 4px;
+      color: #3b2f2f;
+      font-family: 'Kalam', cursive;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(139, 115, 85, 0.6);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 20px rgba(139, 115, 85, 0.2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: rgba(139, 115, 85, 0.3);
+      border: 2px solid rgba(139, 115, 85, 0.5);
+      border-radius: 4px;
+      color: #3b2f2f;
+      font-family: 'Kalam', cursive;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: rgba(139, 115, 85, 0.5);
+      border-color: rgba(139, 115, 85, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(139, 115, 85, 0.3);
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 30px;
+      background: rgba(139, 115, 85, 0.15);
+      border: 1px solid rgba(139, 115, 85, 0.4);
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+
+    .form-success p {
+      font-size: 18px;
+      margin: 0;
+      color: #6b5345;
+    }
+
+    /* Aktif link stili */
+    .nav-link.active {
+      opacity: 1;
+      border-bottom: 2px solid #8b7355;
+    }
+
+    /* Şiir listesi stilleri */
+    .poems-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .poem-list-item {
+      background: linear-gradient(135deg, rgba(244, 225, 193, 0.7) 0%, rgba(232, 212, 176, 0.6) 100%);
+      border: 1px solid rgba(59, 47, 47, 0.25);
+      border-radius: 8px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 15px rgba(59, 47, 47, 0.15);
+    }
+
+    .poem-list-item:hover {
+      transform: translateX(10px);
+      border-color: rgba(139, 115, 85, 0.5);
+      box-shadow: 0 4px 25px rgba(139, 115, 85, 0.25);
+      background: linear-gradient(135deg, rgba(244, 225, 193, 0.9) 0%, rgba(232, 212, 176, 0.8) 100%);
+    }
+
+    .poem-list-icon {
+      font-size: 32px;
+      opacity: 0.8;
+    }
+
+    .poem-list-content {
+      flex: 1;
+    }
+
+    .poem-list-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      margin: 0 0 8px 0;
+      color: #6b5345;
+    }
+
+    .poem-list-date {
+      font-size: 14px;
+      opacity: 0.6;
+      margin: 0;
+    }
+
+    .poem-list-arrow {
+      font-size: 24px;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .poem-list-item:hover .poem-list-arrow {
+      opacity: 1;
+      transform: translateX(5px);
+    }
+
+    /* Şiir detay sayfası */
+    .poem-detail-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .back-button {
+      background: rgba(244, 225, 193, 0.6);
+      border: 1px solid rgba(139, 115, 85, 0.4);
+      color: #3b2f2f;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-family: 'Kalam', cursive;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 40px;
+    }
+
+    .back-button:hover {
+      background: rgba(244, 225, 193, 0.9);
+      border-color: rgba(139, 115, 85, 0.6);
+      transform: translateX(-5px);
+      box-shadow: 0 4px 20px rgba(139, 115, 85, 0.3);
+    }
+
+    .poem-detail-card {
+      background: linear-gradient(135deg, rgba(244, 225, 193, 0.8) 0%, rgba(232, 212, 176, 0.7) 100%);
+      border: 1px solid rgba(59, 47, 47, 0.3);
+      border-radius: 12px;
+      padding: 50px 40px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(59, 47, 47, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poem-detail-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(139, 115, 85, 0.12) 0%, transparent 50%);
+      animation: lightSpreadDetail 12s ease-in-out infinite;
+    }
+
+    @keyframes lightSpreadDetail {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translate(8%, 8%) scale(1.15);
+        opacity: 0.7;
+      }
+    }
+
+    .poem-detail-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 42px;
+      margin: 0 0 20px 0;
+      color: #6b5345;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poem-detail-date {
+      font-size: 16px;
+      opacity: 0.6;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poem-detail-text {
+      font-size: 20px;
+      line-height: 2.2;
+      font-style: italic;
+      opacity: 0.9;
+      white-space: pre-line;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive tasarım */
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 48px;
+      }
+
+      .site-motto {
+        font-size: 16px;
+      }
+
+      .navigation {
+        gap: 20px;
+      }
+
+      .nav-link {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .poems-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .container {
+        padding: 40px 15px;
+      }
+
+      .about-text {
+        font-size: 16px;
+      }
+
+      .about-quote {
+        font-size: 20px;
+        padding: 20px;
+      }
+
+      .contact-form {
+        padding: 25px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="smoke-effect"></div><!-- Vintage Desenler -->
+  <div class="decorative-patterns"><!-- Köşe Desenleri -->
+   <svg class="corner-pattern top-left" width="80" height="80" viewbox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q20 5, 30 10 Q35 15, 30 25 Q25 30, 15 25 Q10 20, 10 10 Z" fill="#8b7355" /> <circle cx="40" cy="15" r="3" fill="#8b7355" /> <path d="M50 20 L60 25 L55 35 L45 30 Z" fill="#8b7355" /> <path d="M15 40 Q25 35, 35 40 Q40 45, 35 55 Q30 60, 20 55 Q15 50, 15 40 Z" fill="#8b7355" /> <circle cx="50" cy="50" r="2" fill="#8b7355" /> <path d="M60 60 L70 65 L65 75 L55 70 Z" fill="#8b7355" />
+   </svg>
+   <svg class="corner-pattern top-right" width="80" height="80" viewbox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q20 5, 30 10 Q35 15, 30 25 Q25 30, 15 25 Q10 20, 10 10 Z" fill="#8b7355" /> <circle cx="40" cy="15" r="3" fill="#8b7355" /> <path d="M50 20 L60 25 L55 35 L45 30 Z" fill="#8b7355" /> <path d="M15 40 Q25 35, 35 40 Q40 45, 35 55 Q30 60, 20 55 Q15 50, 15 40 Z" fill="#8b7355" /> <circle cx="50" cy="50" r="2" fill="#8b7355" /> <path d="M60 60 L70 65 L65 75 L55 70 Z" fill="#8b7355" />
+   </svg>
+   <svg class="corner-pattern bottom-left" width="80" height="80" viewbox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q20 5, 30 10 Q35 15, 30 25 Q25 30, 15 25 Q10 20, 10 10 Z" fill="#8b7355" /> <circle cx="40" cy="15" r="3" fill="#8b7355" /> <path d="M50 20 L60 25 L55 35 L45 30 Z" fill="#8b7355" /> <path d="M15 40 Q25 35, 35 40 Q40 45, 35 55 Q30 60, 20 55 Q15 50, 15 40 Z" fill="#8b7355" /> <circle cx="50" cy="50" r="2" fill="#8b7355" /> <path d="M60 60 L70 65 L65 75 L55 70 Z" fill="#8b7355" />
+   </svg>
+   <svg class="corner-pattern bottom-right" width="80" height="80" viewbox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q20 5, 30 10 Q35 15, 30 25 Q25 30, 15 25 Q10 20, 10 10 Z" fill="#8b7355" /> <circle cx="40" cy="15" r="3" fill="#8b7355" /> <path d="M50 20 L60 25 L55 35 L45 30 Z" fill="#8b7355" /> <path d="M15 40 Q25 35, 35 40 Q40 45, 35 55 Q30 60, 20 55 Q15 50, 15 40 Z" fill="#8b7355" /> <circle cx="50" cy="50" r="2" fill="#8b7355" /> <path d="M60 60 L70 65 L65 75 L55 70 Z" fill="#8b7355" />
+   </svg><!-- Yüzen Süslemeler -->
+   <svg class="floating-ornament" width="60" height="60" viewbox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="20" stroke="#8b7355" stroke-width="1" fill="none" /> <path d="M30 15 L35 25 L45 30 L35 35 L30 45 L25 35 L15 30 L25 25 Z" fill="#8b7355" /> <circle cx="30" cy="30" r="5" fill="#8b7355" />
+   </svg>
+   <svg class="floating-ornament" width="50" height="50" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 5 Q35 15, 45 25 Q35 35, 25 45 Q15 35, 5 25 Q15 15, 25 5 Z" stroke="#8b7355" stroke-width="1" fill="none" /> <path d="M25 15 L30 20 L35 25 L30 30 L25 35 L20 30 L15 25 L20 20 Z" fill="#8b7355" />
+   </svg>
+   <svg class="floating-ornament" width="45" height="45" viewbox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="25" height="25" stroke="#8b7355" stroke-width="1" fill="none" transform="rotate(45 22.5 22.5)" /> <circle cx="22.5" cy="22.5" r="8" fill="#8b7355" /> <path d="M22.5 5 L27.5 17.5 L40 22.5 L27.5 27.5 L22.5 40 L17.5 27.5 L5 22.5 L17.5 17.5 Z" stroke="#8b7355" stroke-width="0.5" fill="none" />
+   </svg><!-- Ek Yüzen Desenler -->
+   <svg class="floating-ornament" width="55" height="55" viewbox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.5 10 Q35 18, 45 27.5 Q35 37, 27.5 45 Q18 37, 10 27.5 Q18 18, 27.5 10 Z" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="27.5" cy="27.5" r="6" stroke="#8b7355" stroke-width="1" fill="none" /> <path d="M27.5 15 L32 22 L39 27.5 L32 33 L27.5 40 L23 33 L16 27.5 L23 22 Z" fill="#8b7355" />
+   </svg>
+   <svg class="floating-ornament" width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L25 15 L35 20 L25 25 L20 35 L15 25 L5 20 L15 15 Z" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="20" cy="20" r="4" fill="#8b7355" /> <path d="M20 10 L23 17 L30 20 L23 23 L20 30 L17 23 L10 20 L17 17 Z" stroke="#8b7355" stroke-width="0.5" fill="none" />
+   </svg>
+   <svg class="floating-ornament" width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="12" width="24" height="24" stroke="#8b7355" stroke-width="1" fill="none" transform="rotate(30 24 24)" /> <circle cx="24" cy="24" r="10" stroke="#8b7355" stroke-width="1" fill="none" /> <path d="M24 8 L28 20 L40 24 L28 28 L24 40 L20 28 L8 24 L20 20 Z" fill="#8b7355" />
+   </svg>
+   <svg class="floating-ornament" width="42" height="42" viewbox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 6 Q30 12, 36 21 Q30 30, 21 36 Q12 30, 6 21 Q12 12, 21 6 Z" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="21" cy="21" r="7" fill="#8b7355" /> <path d="M21 12 L26 18 L32 21 L26 24 L21 30 L16 24 L10 21 L16 18 Z" stroke="#8b7355" stroke-width="0.5" fill="none" />
+   </svg><!-- Yan Desenler -->
+   <svg class="side-pattern left" width="30" height="200" viewbox="0 0 30 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q15 10, 25 20 Q15 30, 5 20 Z" fill="#8b7355" /> <path d="M5 60 Q15 50, 25 60 Q15 70, 5 60 Z" fill="#8b7355" /> <path d="M5 100 Q15 90, 25 100 Q15 110, 5 100 Z" fill="#8b7355" /> <path d="M5 140 Q15 130, 25 140 Q15 150, 5 140 Z" fill="#8b7355" /> <path d="M5 180 Q15 170, 25 180 Q15 190, 5 180 Z" fill="#8b7355" /> <circle cx="15" cy="40" r="2" fill="#8b7355" /> <circle cx="15" cy="80" r="2" fill="#8b7355" /> <circle cx="15" cy="120" r="2" fill="#8b7355" /> <circle cx="15" cy="160" r="2" fill="#8b7355" />
+   </svg>
+   <svg class="side-pattern right" width="30" height="200" viewbox="0 0 30 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q15 10, 25 20 Q15 30, 5 20 Z" fill="#8b7355" /> <path d="M5 60 Q15 50, 25 60 Q15 70, 5 60 Z" fill="#8b7355" /> <path d="M5 100 Q15 90, 25 100 Q15 110, 5 100 Z" fill="#8b7355" /> <path d="M5 140 Q15 130, 25 140 Q15 150, 5 140 Z" fill="#8b7355" /> <path d="M5 180 Q15 170, 25 180 Q15 190, 5 180 Z" fill="#8b7355" /> <circle cx="15" cy="40" r="2" fill="#8b7355" /> <circle cx="15" cy="80" r="2" fill="#8b7355" /> <circle cx="15" cy="120" r="2" fill="#8b7355" /> <circle cx="15" cy="160" r="2" fill="#8b7355" />
+   </svg><!-- Üst ve Alt Kenar Desenleri -->
+   <svg class="border-ornament top" width="150" height="25" viewbox="0 0 150 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12.5 Q25 5, 40 12.5 Q55 20, 70 12.5 Q85 5, 100 12.5 Q115 20, 130 12.5 Q140 8, 145 12.5" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="25" cy="12.5" r="2" fill="#8b7355" /> <circle cx="55" cy="12.5" r="2" fill="#8b7355" /> <circle cx="85" cy="12.5" r="2" fill="#8b7355" /> <circle cx="115" cy="12.5" r="2" fill="#8b7355" />
+   </svg>
+   <svg class="border-ornament bottom" width="150" height="25" viewbox="0 0 150 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12.5 Q25 5, 40 12.5 Q55 20, 70 12.5 Q85 5, 100 12.5 Q115 20, 130 12.5 Q140 8, 145 12.5" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="25" cy="12.5" r="2" fill="#8b7355" /> <circle cx="55" cy="12.5" r="2" fill="#8b7355" /> <circle cx="85" cy="12.5" r="2" fill="#8b7355" /> <circle cx="115" cy="12.5" r="2" fill="#8b7355" />
+   </svg><!-- Yaprak Desenleri -->
+   <svg class="floating-ornament" width="35" height="50" viewbox="0 0 35 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: 20%; left: 20%; animation-delay: 2s;"><path d="M17.5 5 Q25 15, 30 25 Q25 35, 17.5 45 Q10 35, 5 25 Q10 15, 17.5 5 Z" fill="#8b7355" /> <path d="M17.5 10 L17.5 40" stroke="#6b5345" stroke-width="0.5" /> <path d="M17.5 15 Q20 18, 22 22" stroke="#6b5345" stroke-width="0.3" /> <path d="M17.5 20 Q15 23, 13 27" stroke="#6b5345" stroke-width="0.3" /> <path d="M17.5 25 Q20 28, 22 32" stroke="#6b5345" stroke-width="0.3" /> <path d="M17.5 30 Q15 33, 13 37" stroke="#6b5345" stroke-width="0.3" />
+   </svg>
+   <svg class="floating-ornament" width="40" height="45" viewbox="0 0 40 45" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: 65%; right: 18%; animation-delay: 7s;"><path d="M20 5 Q30 12, 35 22.5 Q30 33, 20 40 Q10 33, 5 22.5 Q10 12, 20 5 Z" fill="#8b7355" /> <path d="M20 8 L20 37" stroke="#6b5345" stroke-width="0.5" /> <path d="M20 12 Q23 15, 25 19" stroke="#6b5345" stroke-width="0.3" /> <path d="M20 17 Q17 20, 15 24" stroke="#6b5345" stroke-width="0.3" /> <path d="M20 22 Q23 25, 25 29" stroke="#6b5345" stroke-width="0.3" /> <path d="M20 27 Q17 30, 15 34" stroke="#6b5345" stroke-width="0.3" />
+   </svg>
+   <svg class="floating-ornament" width="30" height="40" viewbox="0 0 30 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="bottom: 25%; left: 35%; animation-delay: 12s;"><path d="M15 5 Q22 10, 25 20 Q22 30, 15 35 Q8 30, 5 20 Q8 10, 15 5 Z" fill="#8b7355" /> <path d="M15 8 L15 32" stroke="#6b5345" stroke-width="0.5" /> <path d="M15 12 Q18 14, 20 17" stroke="#6b5345" stroke-width="0.3" /> <path d="M15 16 Q12 18, 10 21" stroke="#6b5345" stroke-width="0.3" /> <path d="M15 20 Q18 22, 20 25" stroke="#6b5345" stroke-width="0.3" /> <path d="M15 24 Q12 26, 10 29" stroke="#6b5345" stroke-width="0.3" />
+   </svg><!-- Kuş Desenleri -->
+   <svg class="floating-ornament" width="60" height="35" viewbox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: 35%; right: 8%; animation-delay: 4s;"><path d="M10 20 Q15 15, 25 17 Q35 19, 45 15 Q50 17, 50 20 Q45 22, 35 20 Q25 18, 15 22 Q10 20, 10 20 Z" fill="#8b7355" /> <path d="M5 18 Q10 15, 15 18 Q20 21, 25 18" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="48" cy="18" r="1.5" fill="#6b5345" /> <path d="M52 17 Q55 15, 58 17" stroke="#8b7355" stroke-width="0.8" fill="none" />
+   </svg>
+   <svg class="floating-ornament" width="55" height="30" viewbox="0 0 55 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: 50%; left: 12%; animation-delay: 9s;"><path d="M8 18 Q12 14, 20 16 Q28 18, 38 14 Q42 16, 42 18 Q38 20, 28 18 Q20 16, 12 20 Q8 18, 8 18 Z" fill="#8b7355" /> <path d="M3 16 Q8 13, 12 16 Q16 19, 20 16" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="40" cy="16" r="1.5" fill="#6b5345" /> <path d="M44 15 Q47 13, 50 15" stroke="#8b7355" stroke-width="0.8" fill="none" />
+   </svg>
+   <svg class="floating-ornament" width="50" height="28" viewbox="0 0 50 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="bottom: 40%; right: 30%; animation-delay: 14s;"><path d="M7 16 Q11 12, 18 14 Q25 16, 33 12 Q37 14, 37 16 Q33 18, 25 16 Q18 14, 11 18 Q7 16, 7 16 Z" fill="#8b7355" /> <path d="M2 14 Q7 11, 11 14 Q15 17, 18 14" stroke="#8b7355" stroke-width="1" fill="none" /> <circle cx="35" cy="14" r="1.5" fill="#6b5345" /> <path d="M39 13 Q42 11, 45 13" stroke="#8b7355" stroke-width="0.8" fill="none" />
+   </svg><!-- Dallar ve Yaprak Grupları -->
+   <svg class="floating-ornament" width="80" height="60" viewbox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: 10%; left: 60%; animation-delay: 6s;"><path d="M10 30 Q20 25, 30 30 Q40 35, 50 30 Q60 25, 70 30" stroke="#8b7355" stroke-width="1.5" fill="none" /> <!-- Yapraklar --> <path d="M20 25 Q25 20, 30 25 Q25 30, 20 25 Z" fill="#8b7355" /> <path d="M40 35 Q45 30, 50 35 Q45 40, 40 35 Z" fill="#8b7355" /> <path d="M60 25 Q65 20, 70 25 Q65 30, 60 25 Z" fill="#8b7355" /> <!-- Yaprak damarları --> <path d="M25 25 L25 25" stroke="#6b5345" stroke-width="0.3" /> <path d="M45 35 L45 35" stroke="#6b5345" stroke-width="0.3" /> <path d="M65 25 L65 25" stroke="#6b5345" stroke-width="0.3" />
+   </svg>
+   <svg class="floating-ornament" width="70" height="55" viewbox="0 0 70 55" fill="none" xmlns="http://www.w3.org/2000/svg" style="bottom: 20%; left: 8%; animation-delay: 11s;"><path d="M8 27 Q18 22, 28 27 Q38 32, 48 27 Q58 22, 65 27" stroke="#8b7355" stroke-width="1.5" fill="none" /> <!-- Yapraklar --> <path d="M18 22 Q23 17, 28 22 Q23 27, 18 22 Z" fill="#8b7355" /> <path d="M38 32 Q43 27, 48 32 Q43 37, 38 32 Z" fill="#8b7355" /> <path d="M58 22 Q63 17, 65 22 Q63 27, 58 22 Z" fill="#8b7355" /> <!-- Yaprak damarları --> <path d="M23 22 L23 22" stroke="#6b5345" stroke-width="0.3" /> <path d="M43 32 L43 32" stroke="#6b5345" stroke-width="0.3" /> <path d="M61 22 L61 22" stroke="#6b5345" stroke-width="0.3" />
+   </svg>
+  </div><!-- Bokeh Işık Efektleri -->
+  <div class="bokeh-lights">
+   <div class="bokeh-light"></div>
+   <div class="bokeh-light"></div>
+   <div class="bokeh-light"></div>
+   <div class="bokeh-light"></div>
+  </div>
+  <div class="container"><!-- Sağ Üst Logo - Hareketli Güvercin Emoji -->
+   <div style="position: fixed; top: 20px; right: 20px; font-size: 80px; z-index: 10; opacity: 0.85; filter: drop-shadow(0 4px 12px rgba(59, 47, 47, 0.3)); animation: floatDove 4s ease-in-out infinite;">
+    🕊️
+   </div>
+   <header class="header"><!-- Header İkonu - Logo --> <img src="https://r.resimlink.com/4JvndOxr5.jpg" alt="Logo" class="inkwell-icon" onerror="this.style.display='none';" style="object-fit: contain;">
+    <h1 class="site-title" id="siteTitle">Kendime Kelimeler</h1>
+    <p class="site-motto" id="siteMotto">Bazı kelimeler sadece içimde yankılanır.</p>
+    <nav class="navigation"><a href="#" class="nav-link" id="navHome">Ana Sayfa</a> <a href="#" class="nav-link" id="navPoems">Şiirler</a> <a href="#" class="nav-link" id="navAbout">Hakkında</a> <a href="#" class="nav-link" id="navContact">İletişim</a>
+    </nav>
+   </header><!-- Ana Sayfa -->
+   <section class="poems-section page-content" id="homePage">
+    <h2 class="section-title">Son Şiirler</h2>
+    <div class="poems-grid">
+     <div class="poem-card">
+      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 40 Q15 20, 25 15 Q35 20, 40 40" stroke="#8b7355" stroke-width="2" opacity="0.6" /> <circle cx="25" cy="15" r="3" fill="#8b7355" opacity="0.5" />
+      </svg>
+      <h3 class="poem-title">Sessiz Gece</h3>
+      <p class="poem-excerpt">Karanlıkta yankılanan kelimeler,<br>
+        Unutulmuş defterlerin sayfalarında,<br>
+        Bir zamanlar yazdığım satırlar...</p>
+      <div class="poem-date">
+       15 Ocak 2024
+      </div>
+     </div>
+     <div class="poem-card">
+      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="10" width="20" height="30" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <line x1="20" y1="18" x2="30" y2="18" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="20" y1="24" x2="30" y2="24" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="20" y1="30" x2="28" y2="30" stroke="#8b7355" stroke-width="1" opacity="0.5" />
+      </svg>
+      <h3 class="poem-title">Mürekkep İzleri</h3>
+      <p class="poem-excerpt">Kâğıda dökülen düşünceler,<br>
+        Solmuş mürekkep lekeleri gibi,<br>
+        Zamanın tozunu taşıyor...</p>
+      <div class="poem-date">
+       12 Ocak 2024
+      </div>
+     </div>
+     <div class="poem-card">
+      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="15" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <path d="M25 15 L25 25 L32 28" stroke="#8b7355" stroke-width="2" opacity="0.5" />
+      </svg>
+      <h3 class="poem-title">Zaman Durduğunda</h3>
+      <p class="poem-excerpt">Saatin tik takları sustuğunda,<br>
+        Yalnızca kalp atışları kalır,<br>
+        Ve senin adın dudaklarımda...</p>
+      <div class="poem-date">
+       8 Ocak 2024
+      </div>
+     </div>
+     <div class="poem-card">
+      <svg class="poem-icon" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 10 L25 40 M15 25 L35 25" stroke="#8b7355" stroke-width="2" opacity="0.6" /> <circle cx="25" cy="25" r="12" stroke="#8b7355" stroke-width="1" fill="none" opacity="0.4" />
+      </svg>
+      <h3 class="poem-title">Kayıp Yollar</h3>
+      <p class="poem-excerpt">Gittiğim her yol sana çıkıyor,<br>
+        Döndüğüm her köşe senin kokun,<br>
+        Kayboldum bu şehirde...</p>
+      <div class="poem-date">
+       5 Ocak 2024
+      </div>
+     </div>
+    </div>
+   </section><!-- Şiirler Sayfası - Liste Görünümü -->
+   <section class="page-content" id="poemsPage" style="display: none;">
+    <h2 class="section-title">Tüm Şiirler</h2>
+    <div class="poems-list">
+     <div class="poem-list-item" onclick="showPoemDetail('poem1')">
+      <div class="poem-list-icon">
+       📜
+      </div>
+      <div class="poem-list-content">
+       <h3 class="poem-list-title">Sessiz Gece</h3>
+       <p class="poem-list-date">15 Ocak 2024</p>
+      </div>
+      <div class="poem-list-arrow">
+       →
+      </div>
+     </div>
+     <div class="poem-list-item" onclick="showPoemDetail('poem2')">
+      <div class="poem-list-icon">
+       🖋️
+      </div>
+      <div class="poem-list-content">
+       <h3 class="poem-list-title">Mürekkep İzleri</h3>
+       <p class="poem-list-date">12 Ocak 2024</p>
+      </div>
+      <div class="poem-list-arrow">
+       →
+      </div>
+     </div>
+     <div class="poem-list-item" onclick="showPoemDetail('poem3')">
+      <div class="poem-list-icon">
+       ⏰
+      </div>
+      <div class="poem-list-content">
+       <h3 class="poem-list-title">Zaman Durduğunda</h3>
+       <p class="poem-list-date">8 Ocak 2024</p>
+      </div>
+      <div class="poem-list-arrow">
+       →
+      </div>
+     </div>
+     <div class="poem-list-item" onclick="showPoemDetail('poem4')">
+      <div class="poem-list-icon">
+       🗺️
+      </div>
+      <div class="poem-list-content">
+       <h3 class="poem-list-title">Kayıp Yollar</h3>
+       <p class="poem-list-date">5 Ocak 2024</p>
+      </div>
+      <div class="poem-list-arrow">
+       →
+      </div>
+     </div>
+    </div>
+   </section><!-- Şiir Detay Sayfası -->
+   <section class="page-content" id="poemDetailPage" style="display: none;">
+    <div class="poem-detail-container"><button class="back-button" onclick="showPage('poemsPage')">← Geri</button>
+     <div id="poemDetailContent"></div>
+    </div>
+   </section><!-- Hakkında Sayfası -->
+   <section class="page-content about-page" id="aboutPage" style="display: none;">
+    <h2 class="section-title">Hakkında</h2>
+    <div class="about-content">
+     <svg class="about-icon" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="15" width="60" height="70" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <line x1="30" y1="30" x2="70" y2="30" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="30" y1="40" x2="70" y2="40" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="30" y1="50" x2="65" y2="50" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="30" y1="60" x2="70" y2="60" stroke="#8b7355" stroke-width="1" opacity="0.5" /> <line x1="30" y1="70" x2="60" y2="70" stroke="#8b7355" stroke-width="1" opacity="0.5" />
+     </svg>
+     <p class="about-text"><em>Kendime Kelimeler</em>, gecenin sessizliğinde kâğıda dökülen düşüncelerin, unutulmaya yüz tutmuş anıların ve içimizde yankılanan kelimelerin yuvası...</p>
+     <p class="about-text">Her şiir, bir zamanlar yaşanmış bir anın, hissedilmiş bir duygunun mürekkep lekelerine dönüşmüş halidir. Eski bir yazarın defterinden fırlamış gibi, loş ışıklar altında, dokulu kâğıtlar üzerinde...</p>
+     <p class="about-text">Bazı kelimeler sadece içimizde yankılanır. Bu kelimeler, sessizliğin dilinde konuşur, karanlığın renginde yazılır.</p>
+     <div class="about-quote">
+      "Yazmak, içimizdeki sessizliği kelimelere dökmektir."
+     </div>
+    </div>
+   </section><!-- İletişim Sayfası -->
+   <section class="page-content contact-page" id="contactPage" style="display: none;">
+    <h2 class="section-title">İletişim</h2>
+    <div class="contact-content">
+     <svg class="contact-icon" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="30" width="70" height="50" stroke="#8b7355" stroke-width="2" fill="none" opacity="0.6" /> <path d="M15 30 L50 55 L85 30" stroke="#8b7355" stroke-width="2" opacity="0.6" />
+     </svg>
+     <p class="contact-text">Kelimelerinizi benimle paylaşmak isterseniz, düşünceleriniz veya şiirleriniz varsa...</p>
+     <form class="contact-form" id="contactForm">
+      <div class="form-group"><label for="name">Adınız</label> <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group"><label for="email">E-posta</label> <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group"><label for="message">Mesajınız</label> <textarea id="message" name="message" rows="6" required></textarea>
+      </div><button type="submit" class="submit-btn">Gönder</button>
+     </form>
+     <div class="form-success" id="formSuccess" style="display: none;">
+      <p>✓ Mesajınız gönderildi. Teşekkür ederim...</p>
+     </div>
+    </div>
+   </section>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: "Kendime Kelimeler",
+      site_motto: "Bazı kelimeler sadece içimde yankılanır.",
+      nav_home: "Ana Sayfa",
+      nav_poems: "Şiirler",
+      nav_about: "Hakkında",
+      nav_contact: "İletişim",
+      background_color: "#f4e1c1",
+      surface_color: "#e8d4b0",
+      text_color: "#3b2f2f",
+      primary_action_color: "#8b7355",
+      secondary_action_color: "#6b5345",
+      font_family: "Kalam",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const siteTitle = config.site_title || defaultConfig.site_title;
+      const siteMotto = config.site_motto || defaultConfig.site_motto;
+      const navHome = config.nav_home || defaultConfig.nav_home;
+      const navPoems = config.nav_poems || defaultConfig.nav_poems;
+      const navAbout = config.nav_about || defaultConfig.nav_about;
+      const navContact = config.nav_contact || defaultConfig.nav_contact;
+
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+
+      document.getElementById('siteTitle').textContent = siteTitle;
+      document.getElementById('siteMotto').textContent = siteMotto;
+      document.getElementById('navHome').textContent = navHome;
+      document.getElementById('navPoems').textContent = navPoems;
+      document.getElementById('navAbout').textContent = navAbout;
+      document.getElementById('navContact').textContent = navContact;
+
+      document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${surfaceColor} 100%)`;
+      document.body.style.color = textColor;
+
+      const poemCards = document.querySelectorAll('.poem-card');
+      poemCards.forEach(card => {
+        card.style.background = `linear-gradient(135deg, ${backgroundColor}e6 0%, ${surfaceColor}cc 100%)`;
+        card.style.borderColor = `${textColor}26`;
+      });
+
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = textColor;
+      });
+
+      document.querySelector('.site-title').style.fontFamily = `Dancing Script, ${customFont}, cursive`;
+      document.querySelector('.site-motto').style.fontFamily = `${customFont}, cursive`;
+      document.body.style.fontFamily = `${customFont}, cursive`;
+
+      document.querySelector('.site-title').style.fontSize = `${baseFontSize * 4.5}px`;
+      document.querySelector('.site-motto').style.fontSize = `${baseFontSize * 1.25}px`;
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.style.fontSize = `${baseFontSize * 1.125}px`;
+      });
+      document.querySelector('.section-title').style.fontSize = `${baseFontSize * 2.625}px`;
+      document.querySelectorAll('.poem-title').forEach(title => {
+        title.style.fontSize = `${baseFontSize * 1.75}px`;
+      });
+      document.querySelectorAll('.poem-excerpt').forEach(excerpt => {
+        excerpt.style.fontSize = `${baseFontSize}px`;
+      });
+      document.querySelectorAll('.poem-date').forEach(date => {
+        date.style.fontSize = `${baseFontSize * 0.875}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["site_title", config.site_title || defaultConfig.site_title],
+        ["site_motto", config.site_motto || defaultConfig.site_motto],
+        ["nav_home", config.nav_home || defaultConfig.nav_home],
+        ["nav_poems", config.nav_poems || defaultConfig.nav_poems],
+        ["nav_about", config.nav_about || defaultConfig.nav_about],
+        ["nav_contact", config.nav_contact || defaultConfig.nav_contact]
+      ]);
+    }
+
+    // Sayfa geçiş fonksiyonu
+    function showPage(pageId) {
+      // Tüm sayfaları gizle
+      const pages = document.querySelectorAll('.page-content');
+      pages.forEach(page => {
+        page.style.display = 'none';
+      });
+
+      // Seçilen sayfayı göster
+      const selectedPage = document.getElementById(pageId);
+      if (selectedPage) {
+        selectedPage.style.display = 'block';
+      }
+
+      // Aktif link stilini güncelle
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+    }
+
+    // Navigasyon linkleri
+    document.getElementById('navHome').addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('homePage');
+      e.target.classList.add('active');
+    });
+
+    document.getElementById('navPoems').addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('poemsPage');
+      e.target.classList.add('active');
+    });
+
+    document.getElementById('navAbout').addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('aboutPage');
+      e.target.classList.add('active');
+    });
+
+    document.getElementById('navContact').addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('contactPage');
+      e.target.classList.add('active');
+    });
+
+    // İletişim formu gönderimi
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Form verilerini al
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      // Formu gizle ve başarı mesajını göster
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+
+      // 3 saniye sonra formu sıfırla
+      setTimeout(() => {
+        document.getElementById('contactForm').reset();
+        document.getElementById('contactForm').style.display = 'block';
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 3000);
+    });
+
+    // Şiir veritabanı
+    const poems = {
+      poem1: {
+        title: "Çocuk",
+        date: "13  Eylül 2025 20:16",
+        text: `Ah hayaller hayaller
+Çocukluk ve ilk gençlik
+Zihindeki parmaklıklar
+Ve sırçadan bir hücre
+Daha insan olamadan
+Adam olmak
+Tuzla buz şimdi
+Kristal geceden de parlak
+Ne güzeldir ama
+Seninle yaşlanmak`
+      },
+      poem2: {
+        title: "Güneş ve Gece",
+        date: "10 Eylül 2025 22:45",
+        text: `Burnumda maun bir koku
+Bedenim taş kesmiş 
+Dondurmuş ruhum onu 
+Kalbi sökmüş bir anda
+Fırlatmış sanki 
+Masmavi denizlere   
+Seslerin sessizliği 
+Sarmış bedenimi
+Ne bir fısıltı 
+Ne de bir ayaz 
+Sanki asırlar 
+Su misali akmış 
+Sonrası, karanlık 
+Birden sol yanıma 
+Bir sızı saplanmış 
+Alev almış bedenim
+Unutmuş zaman geçmeyi 
+Toprak kokusu 
+Dolanmış her yanıma 
+Küçük bir kız çocuğu 
+Göğsümdeki deliğe
+Mavi bir gül bırakmış 
+Anladım o anda 
+Tüm bunlar 
+Ölümden sonra hayatmış `
+      },
+      poem3: {
+        title: "Zaman Durduğunda",
+        date: "7 Eylül 2025 03:47",
+        text: `Kırık bir piyano ezgisinde
+Yarım bırakılmış kadehler
+Birazdan yok olacak
+Dudaklarının izleri
+Tanımadığım bir bulaşıkcı
+Silecek hatıraları
+Sessizce
+Sönen kibrit 
+Dökülmüş su gibi
+Hani yanlışlıkla
+Farkında olmadan 
+Bir dirseğin çarptığı
+İnce belli bardak 
+Akıyor damlalarım
+Arnavut kaldırımlarında
+Kaybolmuş 
+Eski bir mahallenin
+Baca külleri ile
+Dağılması gibi
+Karıştırıyor rüzgar
+Hınzır mı hınzır
+Şeffaf yüreğim
+Artık grileşiyor
+Seherin yeli yetişmeden
+Bitmiyor karanlık
+Titrek parmaklar
+Arıyor kuytuluğunu
+Yol gösterir belki diye
+Hani tuğlaların küsüp
+Oluşturduğu boşluklar 
+Yavaşta olsa 
+Bahar gelmeden daha
+Ulaştırıverir
+Saçlarının sıcaklığına
+Belki`
+      },
+      poem4: {
+        title: "Bahar",
+        date: "5 Eylül 2025 07:23",
+        text: `Çoktan unutulmuş
+Belki de hiç olmamış
+Rüya mı gerçek mi
+Kaybolmuş bir sınırda
+Ararken birşeyi  
+Aniden geliverir 
+Bir bebeğin gülüşü
+Ya da ramak kalmış açmasına
+Soğanın içindeki papatya
+Gibi sarıverir seni 
+Sabah yeli yalarken 
+Çıplak bedenini
+Heyecanla beklersin 
+Randevuda güneşini `
+      }
+    };
+
+    // Şiir detayını göster
+    function showPoemDetail(poemId) {
+      const poem = poems[poemId];
+      if (!poem) return;
+
+      const detailContent = document.getElementById('poemDetailContent');
+      detailContent.innerHTML = `
+        <div class="poem-detail-card">
+          <h2 class="poem-detail-title">${poem.title}</h2>
+          <p class="poem-detail-date">${poem.date}</p>
+          <div class="poem-detail-text">${poem.text}</div>
+        </div>
+      `;
+
+      showPage('poemDetailPage');
+    }
+
+    // Sayfa yüklendiğinde Ana Sayfa'yı aktif yap
+    document.getElementById('navHome').classList.add('active');
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a00fce795e2de7a',t:'MTc2MzQwMDk2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
